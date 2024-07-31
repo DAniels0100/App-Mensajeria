@@ -83,7 +83,7 @@ namespace AppChat
                     receive = streamR.ReadLine();
                     this.ChatTxtBox.Invoke(new MethodInvoker(delegate ()
                     {
-                        ChatTxtBox.AppendText("you:" + receive + "\n");
+                        ChatTxtBox.AppendText("\nyou:" + receive + "\n");
                     }));
                     receive = "";
                 }
@@ -102,7 +102,7 @@ namespace AppChat
                 streamW.WriteLine(txtSend);
                 this.ChatTxtBox.Invoke(new MethodInvoker(delegate ()
                 {
-                    ChatTxtBox.AppendText("me:" + txtSend + "\n");
+                    ChatTxtBox.AppendText("\nme:" + txtSend + "\n");
                 }));
             }
             else
