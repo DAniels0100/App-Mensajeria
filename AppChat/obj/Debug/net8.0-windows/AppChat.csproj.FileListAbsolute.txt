@@ -1,0 +1,16 @@
+C:\Users\sealc\OneDrive\Escritorio\Tarea\AppChat\AppChat\bin\Debug\net8.0-windows\AppChat.exe
+C:\Users\sealc\OneDrive\Escritorio\Tarea\AppChat\AppChat\bin\Debug\net8.0-windows\AppChat.deps.json
+C:\Users\sealc\OneDrive\Escritorio\Tarea\AppChat\AppChat\bin\Debug\net8.0-windows\AppChat.runtimeconfig.json
+C:\Users\sealc\OneDrive\Escritorio\Tarea\AppChat\AppChat\bin\Debug\net8.0-windows\AppChat.dll
+C:\Users\sealc\OneDrive\Escritorio\Tarea\AppChat\AppChat\bin\Debug\net8.0-windows\AppChat.pdb
+C:\Users\sealc\OneDrive\Escritorio\Tarea\AppChat\AppChat\obj\Debug\net8.0-windows\AppChat.Form1.resources
+C:\Users\sealc\OneDrive\Escritorio\Tarea\AppChat\AppChat\obj\Debug\net8.0-windows\AppChat.csproj.GenerateResource.cache
+C:\Users\sealc\OneDrive\Escritorio\Tarea\AppChat\AppChat\obj\Debug\net8.0-windows\AppChat.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sealc\OneDrive\Escritorio\Tarea\AppChat\AppChat\obj\Debug\net8.0-windows\AppChat.AssemblyInfoInputs.cache
+C:\Users\sealc\OneDrive\Escritorio\Tarea\AppChat\AppChat\obj\Debug\net8.0-windows\AppChat.AssemblyInfo.cs
+C:\Users\sealc\OneDrive\Escritorio\Tarea\AppChat\AppChat\obj\Debug\net8.0-windows\AppChat.csproj.CoreCompileInputs.cache
+C:\Users\sealc\OneDrive\Escritorio\Tarea\AppChat\AppChat\obj\Debug\net8.0-windows\AppChat.dll
+C:\Users\sealc\OneDrive\Escritorio\Tarea\AppChat\AppChat\obj\Debug\net8.0-windows\refint\AppChat.dll
+C:\Users\sealc\OneDrive\Escritorio\Tarea\AppChat\AppChat\obj\Debug\net8.0-windows\AppChat.pdb
+C:\Users\sealc\OneDrive\Escritorio\Tarea\AppChat\AppChat\obj\Debug\net8.0-windows\AppChat.genruntimeconfig.cache
+C:\Users\sealc\OneDrive\Escritorio\Tarea\AppChat\AppChat\obj\Debug\net8.0-windows\ref\AppChat.dll
