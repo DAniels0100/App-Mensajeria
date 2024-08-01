@@ -10,18 +10,18 @@ namespace test
     {
         static void Main(string[] args)
         {
-            P2PChat chat = new P2PChat();
+            Chat chat = new Chat();
 
             Console.Write("Do you want to host a chat? (y/n): ");
             string choice = Console.ReadLine();
 
             if (choice.ToLower() == "y")
             {
-                chat.StartListening(9000);
+                chat.StartListening(8000);
             }
             else
             {
-                chat.Connect("127.0.0.1", 9000);
+                chat.Connect("127.0.0.1", 8000);
             }
 
             while (true)
@@ -32,3 +32,4 @@ namespace test
         }
     }
 }
+

@@ -5,8 +5,9 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 
-class P2PChat
+class Chat
 {
+    //declaracion de objetos
     private TcpClient client;
     private TcpListener listener;
     private NetworkStream stream;
@@ -14,30 +15,33 @@ class P2PChat
     private List<NetworkStream> clientStreams = new List<NetworkStream>();
     private List<Thread> clientThreads = new List<Thread>();
 
+    //metodo que activa el servidor de comunicacion
     public void StartListening(int port)
     {
         listener = new TcpListener(IPAddress.Any, port);
         listener.Start();
+        Console.WriteLine($"listening on port {port}");
         listenThread = new Thread(ListenForClients);
         listenThread.Start();
-        Console.WriteLine($"Listening on port {port}...");
     }
 
+    //metodo que acepta conexiones de otras instancias
     private void ListenForClients()
     {
         while (true)
         {
             TcpClient newClient = listener.AcceptTcpClient();
-            Console.WriteLine("Client connected.");
+            Console.WriteLine("Someone connected.");
             NetworkStream clientStream = newClient.GetStream();
             clientStreams.Add(clientStream);
-            Thread clientThread = new Thread(HandleClientComm);
+            Thread clientThread = new Thread(ClientMessages);
             clientThread.Start(newClient);
             clientThreads.Add(clientThread);
         }
     }
 
-    private void HandleClientComm(object client_obj)
+    //metodo que lee y codifica mensajes
+    private void ClientMessages(object client_obj)
     {
         TcpClient tcpClient = (TcpClient)client_obj;
         NetworkStream stream = tcpClient.GetStream();
@@ -64,15 +68,16 @@ class P2PChat
 
             ASCIIEncoding encoder = new ASCIIEncoding();
             string clientMessage = encoder.GetString(message, 0, bytesRead);
-            Console.WriteLine("Client: " + clientMessage);
+            Console.WriteLine("Message: " + clientMessage);
 
-            // Broadcast message to all clients (including the server itself)
+            //llamado para comunicar el mensaje a los clientes
             BroadcastMessage(clientMessage, stream);
         }
 
         tcpClient.Close();
     }
 
+    //metodo que comunica las distintos clientes
     private void BroadcastMessage(string message, NetworkStream excludeStream = null)
     {
         byte[] buffer = Encoding.ASCII.GetBytes(message);
@@ -87,24 +92,24 @@ class P2PChat
                 }
                 catch
                 {
-                    // Handle or log exception if a client stream is not available
                 }
             }
         }
     }
 
+    //metodo que permite la conexion de clientes
     public void Connect(string ipAddress, int port)
     {
         client = new TcpClient();
         client.Connect(IPAddress.Parse(ipAddress), port);
         stream = client.GetStream();
-        Console.WriteLine($"Connected to {ipAddress}:{port}");
 
-        // Start a thread to listen for messages from the server
+        // hilo para leer mensajes del server
         Thread receiveThread = new Thread(ReceiveMessages);
         receiveThread.Start();
     }
 
+    //metodo que lee mensajes enviados
     private void ReceiveMessages()
     {
         byte[] buffer = new byte[4096];
@@ -134,6 +139,7 @@ class P2PChat
         }
     }
 
+    //metodo que envia los mensajes
     public void SendMessage(string message)
     {
         if (stream != null)
@@ -142,4 +148,5 @@ class P2PChat
             stream.Write(buffer, 0, buffer.Length);
         }
     }
+
 }
