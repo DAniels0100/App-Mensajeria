@@ -14,3 +14,4 @@ C:\Users\sealc\OneDrive\Escritorio\Tarea\AppChat\AppChat\obj\Debug\net8.0-window
 C:\Users\sealc\OneDrive\Escritorio\Tarea\AppChat\AppChat\obj\Debug\net8.0-windows\AppChat.pdb
 C:\Users\sealc\OneDrive\Escritorio\Tarea\AppChat\AppChat\obj\Debug\net8.0-windows\AppChat.genruntimeconfig.cache
 C:\Users\sealc\OneDrive\Escritorio\Tarea\AppChat\AppChat\obj\Debug\net8.0-windows\ref\AppChat.dll
+C:\Users\sealc\OneDrive\Escritorio\Tarea\AppChat\AppChat\obj\Debug\net8.0-windows\AppChat.sourcelink.json

@@ -1,0 +1,7 @@
+C:\Users\sealc\source\repos\test\test\bin\Debug\test.exe.config
+C:\Users\sealc\source\repos\test\test\bin\Debug\test.exe
+C:\Users\sealc\source\repos\test\test\bin\Debug\test.pdb
+C:\Users\sealc\source\repos\test\test\obj\Debug\test.csproj.AssemblyReference.cache
+C:\Users\sealc\source\repos\test\test\obj\Debug\test.csproj.CoreCompileInputs.cache
+C:\Users\sealc\source\repos\test\test\obj\Debug\test.exe
+C:\Users\sealc\source\repos\test\test\obj\Debug\test.pdb
