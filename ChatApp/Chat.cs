@@ -147,6 +147,6 @@ class Chat
             byte[] buffer = Encoding.ASCII.GetBytes(message);
             stream.Write(buffer, 0, buffer.Length);
         }
+        BroadcastMessage(message);
     }
-
 }
