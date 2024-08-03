@@ -26,17 +26,6 @@ namespace test
                 Console.WriteLine("you are the host");
             }
 
-            /*
-             *
-            if (choice.ToLower() == "y")
-            {
-                chat.StartListening(8000);
-            }
-            else
-            {
-                chat.Connect("127.0.0.1", 8000);
-            }*/
-
             while (true)
             {
                 string message = Console.ReadLine();
