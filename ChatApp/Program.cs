@@ -8,26 +8,19 @@ namespace ChatApp
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            Chat chat = new Chat();
-
-            try
+            Console.Write("ingresa puerto:");
+            if (int.TryParse(Console.ReadLine(), out int port))
             {
-                chat.Connect("127.0.0.1", 8000);
+                Chat chat = new Chat(port);
+                await chat.StartAsync();
             }
-            catch (Exception ex)
+            else
             {
-
-                chat.StartListening(8000);
-                Console.WriteLine("you are the host");
+                Console.WriteLine("invalid port");
             }
 
-            while (true)
-            {
-                string message = Console.ReadLine();
-                chat.SendMessage(message);
-            }
         }
     }
 }

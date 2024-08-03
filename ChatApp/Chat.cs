@@ -4,6 +4,9 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using System.Collections.Concurrent;
+using System.Threading.Tasks;
+
 
 class Chat
 {
@@ -14,139 +17,116 @@ class Chat
     private Thread listenThread;
     private List<NetworkStream> clientStreams = new List<NetworkStream>();
     private List<Thread> clientThreads = new List<Thread>();
+    private ConcurrentDictionary<string, TcpClient> peers = new ConcurrentDictionary<string, TcpClient>();
+    private int port;
 
-    //metodo que activa el servidor de comunicacion
-    public void StartListening(int port)
+    public Chat(int port)
     {
-        listener = new TcpListener(IPAddress.Any, port);
+        this.port = port;
+    }
+
+    public async Task StartAsync()
+    {
+        listener= new TcpListener(IPAddress.Any, port);
         listener.Start();
         Console.WriteLine($"listening on port {port}");
-        listenThread = new Thread(ListenForClients);
-        listenThread.Start();
+        _ = Task.Run(ListenForPeerAsync);
+        _ = Task.Run(SendMessageAync);
+        await Task.Delay(-1);
     }
 
-    //metodo que acepta conexiones de otras instancias
-    private void ListenForClients()
+    private async Task ListenForPeerAsync()
     {
         while (true)
         {
-            TcpClient newClient = listener.AcceptTcpClient();
-            Console.WriteLine("Someone connected.");
-            NetworkStream clientStream = newClient.GetStream();
-            clientStreams.Add(clientStream);
-            Thread clientThread = new Thread(ClientMessages);
-            clientThread.Start(newClient);
-            clientThreads.Add(clientThread);
+            TcpClient client = await listener.AcceptTcpClientAsync();
+            _ = HandlePeerAsync(client);
         }
     }
 
-    //metodo que lee y codifica mensajes
-    private void ClientMessages(object client_obj)
+    private async Task SendMessageAync()
     {
-        TcpClient tcpClient = (TcpClient)client_obj;
-        NetworkStream stream = tcpClient.GetStream();
-        byte[] message = new byte[4096];
-        int bytesRead;
-
-        while (true)
+        while (true) 
         {
-            bytesRead = 0;
-
-            try
+            Console.Write("Enter a message: ");
+            string input = Console.ReadLine();
+            if (input.StartsWith("connect ", StringComparison.OrdinalIgnoreCase))
             {
-                bytesRead = stream.Read(message, 0, 4096);
-            }
-            catch
-            {
-                break;
-            }
-
-            if (bytesRead == 0)
-            {
-                break;
-            }
-
-            ASCIIEncoding encoder = new ASCIIEncoding();
-            string clientMessage = encoder.GetString(message, 0, bytesRead);
-            Console.WriteLine("Message: " + clientMessage);
-
-            //llamado para comunicar el mensaje a los clientes
-            BroadcastMessage(clientMessage, stream);
-        }
-
-        tcpClient.Close();
-    }
-
-    //metodo que comunica las distintos clientes
-    private void BroadcastMessage(string message, NetworkStream excludeStream = null)
-    {
-        byte[] buffer = Encoding.ASCII.GetBytes(message);
-
-        foreach (NetworkStream clientStream in clientStreams)
-        {
-            if (clientStream != excludeStream)
-            {
-                try
+                string[] parts = input.Split(' ');
+                if (parts.Length == 2)
                 {
-                    clientStream.Write(buffer, 0, buffer.Length);
-                }
-                catch
-                {
+                    await ConnectToPeerAsync(parts[1]);
                 }
             }
+            else
+            {
+                await BroadcastMessageAsync(input);
+            }
+        }
+    }
+    private async Task ConnectToPeerAsync(string peerAddress)
+    {
+        try
+        {
+            string[] parts = peerAddress.Split(':');
+            if (parts.Length != 2 || !int.TryParse(parts[1], out int peerPort))
+            {
+                Console.WriteLine("Invalid peer address format. Use 'IP:Port'.");
+                return;
+            }
+
+            TcpClient peerClient = new TcpClient();
+            await peerClient.ConnectAsync(parts[0], peerPort);
+            peers.TryAdd(peerAddress, peerClient);
+            Console.WriteLine($"Connected to peer: {peerAddress}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error connecting to peer: {ex.Message}");
         }
     }
 
-    //metodo que permite la conexion de clientes
-    public void Connect(string ipAddress, int port)
+    private async Task BroadcastMessageAsync(string message)
     {
-        client = new TcpClient();
-        client.Connect(IPAddress.Parse(ipAddress), port);
-        stream = client.GetStream();
-
-        // hilo para leer mensajes del server
-        Thread receiveThread = new Thread(ReceiveMessages);
-        receiveThread.Start();
-    }
-
-    //metodo que lee mensajes enviados
-    private void ReceiveMessages()
-    {
-        byte[] buffer = new byte[4096];
-        int bytesRead;
-
-        while (true)
+        byte[] data = Encoding.ASCII.GetBytes(message);
+        foreach (var peer in peers)
         {
-            bytesRead = 0;
-
             try
             {
-                bytesRead = stream.Read(buffer, 0, buffer.Length);
+                NetworkStream stream = peer.Value.GetStream();
+                await stream.WriteAsync(data, 0, data.Length);
             }
-            catch
+            catch (Exception ex)
             {
-                break;
+                Console.WriteLine($"Error sending to {peer.Key}: {ex.Message}");
+                peers.TryRemove(peer.Key, out _);
             }
-
-            if (bytesRead == 0)
-            {
-                break;
-            }
-
-            ASCIIEncoding encoder = new ASCIIEncoding();
-            string serverMessage = encoder.GetString(buffer, 0, bytesRead);
-            Console.WriteLine("Message: " + serverMessage);
         }
     }
 
-    //metodo que envia los mensajes
-    public void SendMessage(string message)
+    private async Task HandlePeerAsync(TcpClient client)
     {
-        if (stream != null)
+        try
         {
-            byte[] buffer = Encoding.ASCII.GetBytes(message);
-            stream.Write(buffer, 0, buffer.Length);
+            using (NetworkStream stream = client.GetStream())
+            {
+                byte[] buffer = new byte[1024];
+                while (true)
+                {
+                    int bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length);
+                    if (bytesRead == 0) break;
+                    string message = Encoding.ASCII.GetString(buffer, 0, bytesRead);
+                    Console.WriteLine("message " + message);
+                }
+            } 
         }
-        BroadcastMessage(message);
+        catch (Exception ex) 
+        {
+            Console.WriteLine(ex.ToString());
+        }
+        finally
+        {
+            client.Close();
+        }
     }
 }
