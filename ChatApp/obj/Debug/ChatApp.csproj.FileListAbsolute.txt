@@ -5,3 +5,10 @@ C:\Users\sealc\OneDrive\Escritorio\Tarea\AppChat\ChatApp\ChatApp\obj\Debug\ChatA
 C:\Users\sealc\OneDrive\Escritorio\Tarea\AppChat\ChatApp\ChatApp\obj\Debug\ChatApp.csproj.CoreCompileInputs.cache
 C:\Users\sealc\OneDrive\Escritorio\Tarea\AppChat\ChatApp\ChatApp\obj\Debug\ChatApp.exe
 C:\Users\sealc\OneDrive\Escritorio\Tarea\AppChat\ChatApp\ChatApp\obj\Debug\ChatApp.pdb
+C:\Users\sealc\OneDrive\Escritorio\Tarea\AppChat\ChatApp\bin\Debug\ChatApp.exe.config
+C:\Users\sealc\OneDrive\Escritorio\Tarea\AppChat\ChatApp\bin\Debug\ChatApp.exe
+C:\Users\sealc\OneDrive\Escritorio\Tarea\AppChat\ChatApp\bin\Debug\ChatApp.pdb
+C:\Users\sealc\OneDrive\Escritorio\Tarea\AppChat\ChatApp\obj\Debug\ChatApp.csproj.AssemblyReference.cache
+C:\Users\sealc\OneDrive\Escritorio\Tarea\AppChat\ChatApp\obj\Debug\ChatApp.csproj.CoreCompileInputs.cache
+C:\Users\sealc\OneDrive\Escritorio\Tarea\AppChat\ChatApp\obj\Debug\ChatApp.exe
+C:\Users\sealc\OneDrive\Escritorio\Tarea\AppChat\ChatApp\obj\Debug\ChatApp.pdb

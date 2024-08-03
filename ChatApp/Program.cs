@@ -12,9 +12,6 @@ namespace test
         {
             Chat chat = new Chat();
 
-            //Console.Write("Do you want to host a chat? (y/n): ");
-            //string choice = Console.ReadLine();
-
             try
             {
                 chat.Connect("127.0.0.1", 8000);
