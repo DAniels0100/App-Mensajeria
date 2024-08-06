@@ -58,6 +58,7 @@
             textBoxPeerAddress.Name = "textBoxPeerAddress";
             textBoxPeerAddress.Size = new Size(536, 23);
             textBoxPeerAddress.TabIndex = 2;
+            textBoxPeerAddress.Text = "127.0.0.1:";
             // 
             // buttonSend
             // 
