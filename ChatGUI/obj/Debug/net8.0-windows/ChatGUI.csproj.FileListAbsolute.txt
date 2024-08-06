@@ -1,0 +1,16 @@
+C:\Users\sealc\OneDrive\Escritorio\New folder\ChatGUI\ChatGUI\obj\Debug\net8.0-windows\ChatGUI.csproj.GenerateResource.cache
+C:\Users\sealc\OneDrive\Escritorio\New folder\ChatGUI\ChatGUI\obj\Debug\net8.0-windows\ChatGUI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sealc\OneDrive\Escritorio\New folder\ChatGUI\ChatGUI\obj\Debug\net8.0-windows\ChatGUI.AssemblyInfoInputs.cache
+C:\Users\sealc\OneDrive\Escritorio\New folder\ChatGUI\ChatGUI\obj\Debug\net8.0-windows\ChatGUI.AssemblyInfo.cs
+C:\Users\sealc\OneDrive\Escritorio\New folder\ChatGUI\ChatGUI\obj\Debug\net8.0-windows\ChatGUI.csproj.CoreCompileInputs.cache
+C:\Users\sealc\OneDrive\Escritorio\New folder\ChatGUI\ChatGUI\bin\Debug\net8.0-windows\ChatGUI.exe
+C:\Users\sealc\OneDrive\Escritorio\New folder\ChatGUI\ChatGUI\bin\Debug\net8.0-windows\ChatGUI.deps.json
+C:\Users\sealc\OneDrive\Escritorio\New folder\ChatGUI\ChatGUI\bin\Debug\net8.0-windows\ChatGUI.runtimeconfig.json
+C:\Users\sealc\OneDrive\Escritorio\New folder\ChatGUI\ChatGUI\bin\Debug\net8.0-windows\ChatGUI.dll
+C:\Users\sealc\OneDrive\Escritorio\New folder\ChatGUI\ChatGUI\bin\Debug\net8.0-windows\ChatGUI.pdb
+C:\Users\sealc\OneDrive\Escritorio\New folder\ChatGUI\ChatGUI\obj\Debug\net8.0-windows\ChatGUI.dll
+C:\Users\sealc\OneDrive\Escritorio\New folder\ChatGUI\ChatGUI\obj\Debug\net8.0-windows\refint\ChatGUI.dll
+C:\Users\sealc\OneDrive\Escritorio\New folder\ChatGUI\ChatGUI\obj\Debug\net8.0-windows\ChatGUI.pdb
+C:\Users\sealc\OneDrive\Escritorio\New folder\ChatGUI\ChatGUI\obj\Debug\net8.0-windows\ChatGUI.genruntimeconfig.cache
+C:\Users\sealc\OneDrive\Escritorio\New folder\ChatGUI\ChatGUI\obj\Debug\net8.0-windows\ref\ChatGUI.dll
+C:\Users\sealc\OneDrive\Escritorio\New folder\ChatGUI\ChatGUI\obj\Debug\net8.0-windows\ChatApp.ChatForm.resources
